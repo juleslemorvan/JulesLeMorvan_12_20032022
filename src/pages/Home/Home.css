@@ -1,0 +1,33 @@
+.homeContainer {
+  grid-area: home;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1.6fr 0.4fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 28px 28px;
+  flex: 1;
+  grid-template-areas:
+    "dailyActivity nutriments"
+    "performances nutriments";
+}
+
+.nutriments {
+  grid-area: nutriments;
+  background: green;
+}
+
+.dailyActivity {
+  grid-area: dailyActivity;
+  background-color: #fbfbfb;
+  position: relative;
+}
+
+.performances {
+  grid-area: performances;
+  background: blue;
+}

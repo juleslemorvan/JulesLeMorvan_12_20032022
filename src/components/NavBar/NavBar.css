@@ -1,0 +1,5 @@
+.navbarContainer {
+  grid-area: navbar;
+  background-color: black;
+  min-width: 117px;
+}

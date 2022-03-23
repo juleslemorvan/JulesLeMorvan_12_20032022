@@ -1,0 +1,16 @@
+.headerContainer {
+  grid-area: header;
+  background-color: black;
+  min-height: 91px;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.listItem {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1;
+}

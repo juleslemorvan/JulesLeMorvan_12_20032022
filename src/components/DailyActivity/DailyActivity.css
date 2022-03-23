@@ -1,0 +1,8 @@
+.dailyActivityHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.legend {
+  display: flex;
+}
