@@ -1,23 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { UserInformations } from "../../components/UserInformations/UserInformations";
 import { Nutriments } from "../../components/Nutriments/Nutriments";
 import { Performances } from "../../components/Performances/Performances";
 import { DailyActivity } from "../../components/DailyActivity/DailyActivity";
 import "./Home.css";
 import { getUser } from "../../api/routes";
-import { config } from "../../const";
+import { UserContext } from "../../App";
 
 export const Home = () => {
   const [user, setUser] = useState(null);
+  const userId = useContext(UserContext);
+  console.log(userId);
 
   useEffect(() => {
+    console.log("start");
+
     const fetchUser = async () => {
-      const userResponse = await getUser(config.userId);
+      const userResponse = await getUser(userId);
+      console.log(userResponse);
+
       setUser(userResponse.data.data);
     };
 
-    fetchUser();
-  }, []);
+    if (userId) {
+      fetchUser();
+    }
+  }, [userId]);
 
   if (!user) {
     return "...";

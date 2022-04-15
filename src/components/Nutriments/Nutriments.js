@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { getUserAverageSession } from "../../api/routes";
-import { config } from "../../const";
+import React from "react";
+// import { getUserAverageSession } from "../../api/routes";
+// import { config } from "../../const";
+import "./Nutriments.css";
+import energy from "../../assets/svg/energy.svg";
 
 /* 
 
@@ -42,5 +44,22 @@ const calories = nutrimentsMap['calorieCount']
 
 export const Nutriments = ({ data }) => {
   console.log(data);
-  return null;
+  return (
+    <div className="nutriments-container">
+      <div className="calorie">
+        <div className="img-calorie">
+          <img src={energy} alt="energy logo" className="energy-logo" />
+        </div>
+        <div className="infos">
+          <p className="calorie-count">
+            {data.calorieCount.toLocaleString("en-US")}kCal
+          </p>
+          <p>Calories</p>
+        </div>
+      </div>
+      <div className="protéine"></div>
+      <div className="glucide"></div>
+      <div className="lipide"></div>
+    </div>
+  );
 };

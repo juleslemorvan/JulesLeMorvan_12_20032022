@@ -53,8 +53,8 @@ export const DailyActivity = () => {
           <YAxis />
           <Tooltip />
           <Legend verticalAlign="top" align="end" />
-          <Bar dataKey="kilogram" fill="#8884d8" maxBarSize={6} />
-          <Bar dataKey="calories" fill="#82ca9d" />
+          <Bar dataKey="kilogram" fill="#282D30" maxBarSize={6} />
+          <Bar dataKey="calories" fill="#E60000" maxBarSize={6} />
         </BarChart>
       </ResponsiveContainer>
     </>
