@@ -28,5 +28,5 @@
 
 .performances {
   grid-area: performances;
-  background: blue;
+  display: flex;
 }
