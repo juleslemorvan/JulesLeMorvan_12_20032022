@@ -19,12 +19,13 @@ export const DailyActivity = () => {
   useEffect(() => {
     const fetchUserActivity = async () => {
       const userActivityResponse = await getUserActivity(config.userId);
+
       setUserActivity(userActivityResponse.data.data.sessions);
     };
 
     fetchUserActivity();
   }, []);
-
+  console.log(userActivity);
   return (
     <>
       <div
@@ -53,8 +54,18 @@ export const DailyActivity = () => {
           <YAxis />
           <Tooltip />
           <Legend verticalAlign="top" align="end" />
-          <Bar dataKey="kilogram" fill="#282D30" maxBarSize={6} />
-          <Bar dataKey="calories" fill="#E60000" maxBarSize={6} />
+          <Bar
+            dataKey="kilogram"
+            fill="#282D30"
+            maxBarSize={6}
+            legendType="circle"
+          />
+          <Bar
+            dataKey="calories"
+            fill="#E60000"
+            maxBarSize={6}
+            legendType="circle"
+          />
         </BarChart>
       </ResponsiveContainer>
     </>

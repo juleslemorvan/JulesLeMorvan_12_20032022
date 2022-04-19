@@ -8,7 +8,6 @@ import glucide from "../../assets/svg/apple.svg";
 import lipide from "../../assets/svg/cheeseburger.svg";
 
 export const Nutriments = ({ data }) => {
-  console.log(data);
   return (
     <div className="nutriments-container">
       <div className="nutriment-item">
