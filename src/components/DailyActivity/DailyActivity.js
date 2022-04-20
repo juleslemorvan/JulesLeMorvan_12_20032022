@@ -15,17 +15,20 @@ import "./DailyActivity.css";
 
 export const DailyActivity = () => {
   const [userActivity, setUserActivity] = useState([]);
+  console.log(userActivity);
 
   useEffect(() => {
     const fetchUserActivity = async () => {
       const userActivityResponse = await getUserActivity(config.userId);
-
-      setUserActivity(userActivityResponse.data.data.sessions);
+      const nextUserActivity = userActivityResponse.data.data.sessions.map(
+        (session, index) => ({ ...session, day: index + 1 })
+      );
+      setUserActivity(nextUserActivity);
     };
 
     fetchUserActivity();
   }, []);
-  console.log(userActivity);
+
   return (
     <>
       <div
@@ -39,8 +42,8 @@ export const DailyActivity = () => {
       </div>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
-          width={500}
-          height={300}
+          barSize={7}
+          barGap={8}
           data={userActivity}
           margin={{
             top: 5,
@@ -49,7 +52,7 @@ export const DailyActivity = () => {
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid strokeDasharray="1 1" vertical={false} />
           <XAxis dataKey="day" />
           <YAxis />
           <Tooltip />
@@ -57,14 +60,14 @@ export const DailyActivity = () => {
           <Bar
             dataKey="kilogram"
             fill="#282D30"
-            maxBarSize={6}
             legendType="circle"
+            radius={[10, 10, 0, 0]}
           />
           <Bar
             dataKey="calories"
             fill="#E60000"
-            maxBarSize={6}
             legendType="circle"
+            radius={[10, 10, 0, 0]}
           />
         </BarChart>
       </ResponsiveContainer>

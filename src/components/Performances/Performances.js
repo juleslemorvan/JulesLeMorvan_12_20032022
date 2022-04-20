@@ -4,12 +4,12 @@ import RadarChartPerformance from "./RadarChartPerformance/RadarChartPerformance
 
 export const Performances = () => {
   return (
-    <>
+    <div className="performances-container">
       <div className="item"></div>
-      <div className="item ">
+      <div className="RadarChartPerformance-item">
         <RadarChartPerformance />
       </div>
       <div className="item"></div>
-    </>
+    </div>
   );
 };

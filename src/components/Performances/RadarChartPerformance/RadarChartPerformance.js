@@ -18,9 +18,16 @@ const RadarChartPerformance = () => {
   useEffect(() => {
     const fetchUserPerformance = async () => {
       const userPerformanceResponse = await getUserPerformance(config.userId);
-      console.log(userPerformanceResponse);
 
-      setUserPerformance(userPerformanceResponse.data.data.sessions);
+      const kinds = userPerformanceResponse.data.data.kind;
+      const kindValues = userPerformanceResponse.data.data.data;
+
+      const data = kindValues.map(({ value, kind }) => ({
+        value,
+        kind: kinds[kind],
+      }));
+
+      setUserPerformance(data);
     };
 
     fetchUserPerformance();
@@ -30,13 +37,11 @@ const RadarChartPerformance = () => {
     <ResponsiveContainer width="100%" height="100%">
       <RadarChart cx="50%" cy="50%" outerRadius="80%" data={userPerformance}>
         <PolarGrid />
-        <PolarAngleAxis dataKey="kind" />
-        <PolarRadiusAxis />
+        <PolarAngleAxis style={{ fontSize: "11px" }} dataKey="kind" />
         <Radar
-          name="Mike"
-          dataKey="A"
-          stroke="#8884d8"
-          fill="#8884d8"
+          dataKey="value"
+          stroke="#FF0101B2"
+          fill="#FF0101B2"
           fillOpacity={0.6}
         />
       </RadarChart>

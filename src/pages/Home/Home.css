@@ -30,3 +30,14 @@
   grid-area: performances;
   display: flex;
 }
+
+@media screen and (max-width: 1024px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    grid-template-areas: unset;
+    grid-template-columns: unset;
+    grid-template-rows: unset;
+  }
+}

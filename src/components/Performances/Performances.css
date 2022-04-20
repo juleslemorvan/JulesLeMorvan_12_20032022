@@ -1,6 +1,17 @@
+.RadarChartPerformance-item {
+  background: #282d30;
+  flex: 1;
+  color: white;
+}
+
 .item {
-  width: 258px;
-  height: 263px;
+  flex: 1;
   background: grey;
-  margin-right: 30px;
+}
+
+.performances-container {
+  display: flex;
+  align-items: stretch;
+  gap: 30px;
+  flex: 1;
 }

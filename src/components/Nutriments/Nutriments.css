@@ -4,13 +4,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 39px;
-  align-items: center;
+  align-items: stretch;
 }
 
 .nutriment-item {
-  width: 258px;
-  height: 124px;
   background: #fbfbfb;
   border-radius: 5px;
   display: flex;
@@ -45,14 +42,14 @@
 
 .img-glucide {
   position: relative;
-  background: #f9ce23;
+  background: rgba(249, 206, 35, 0.1);
   width: 60px;
   height: 60px;
   margin-right: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.1;
+
   mix-blend-mode: normal;
   border-radius: 6px;
 }
@@ -69,8 +66,8 @@
   border-radius: 6px;
 }
 
-.lipide-logo {
-  color: #fd5181;
+.glucide-logo {
+  color: #f9ce23;
 }
 
 .item-count {
@@ -85,12 +82,12 @@
   font-size: 14px;
   line-height: 24px;
   margin: 0;
+  font-family: medium;
+  color: #74798c;
 }
+
 .infos {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 60px;
-  height: 51px;
 }

@@ -10,14 +10,10 @@ import { UserContext } from "../../App";
 export const Home = () => {
   const [user, setUser] = useState(null);
   const userId = useContext(UserContext);
-  console.log(userId);
 
   useEffect(() => {
-    console.log("start");
-
     const fetchUser = async () => {
       const userResponse = await getUser(userId);
-      console.log(userResponse);
 
       setUser(userResponse.data.data);
     };
@@ -38,11 +34,11 @@ export const Home = () => {
         <div className="dailyActivity">
           <DailyActivity />
         </div>
-        <div className="nutriments">
-          <Nutriments data={user.keyData} />
-        </div>
         <div className="performances">
           <Performances />
+        </div>
+        <div className="nutriments">
+          <Nutriments data={user.keyData} />
         </div>
       </div>
     </div>
