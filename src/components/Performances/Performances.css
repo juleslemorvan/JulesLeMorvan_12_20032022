@@ -1,17 +1,22 @@
+.performances-container {
+  display: flex;
+  align-items: stretch;
+  gap: 30px;
+  flex: 1;
+}
+
+.LineChartPerformance {
+  flex: 1;
+  background: #ff0000;
+}
+
 .RadarChartPerformance-item {
   background: #282d30;
   flex: 1;
   color: white;
 }
 
-.item {
+.RadialBarChart-item {
   flex: 1;
-  background: grey;
-}
-
-.performances-container {
-  display: flex;
-  align-items: stretch;
-  gap: 30px;
-  flex: 1;
+  background: #fbfbfb;
 }

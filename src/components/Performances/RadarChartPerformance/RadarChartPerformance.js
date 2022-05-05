@@ -2,22 +2,24 @@ import React, { useState, useEffect } from "react";
 import "./RadarChartPerformance.css";
 import { config } from "../../../const";
 import { getUserPerformance } from "../../../api/routes";
-
 import {
   Radar,
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis,
   ResponsiveContainer,
 } from "recharts";
+import { useSearchParams } from "react-router-dom";
 
 const RadarChartPerformance = () => {
+  const [searchParams] = useSearchParams();
+  const userId = searchParams.get("user_id");
+
   const [userPerformance, setUserPerformance] = useState([]);
 
   useEffect(() => {
     const fetchUserPerformance = async () => {
-      const userPerformanceResponse = await getUserPerformance(config.userId);
+      const userPerformanceResponse = await getUserPerformance(userId);
 
       const kinds = userPerformanceResponse.data.data.kind;
       const kindValues = userPerformanceResponse.data.data.data;

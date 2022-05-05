@@ -5,11 +5,27 @@ import { Performances } from "../../components/Performances/Performances";
 import { DailyActivity } from "../../components/DailyActivity/DailyActivity";
 import "./Home.css";
 import { getUser } from "../../api/routes";
-import { UserContext } from "../../App";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { config } from "../../const";
 
 export const Home = () => {
   const [user, setUser] = useState(null);
-  const userId = useContext(UserContext);
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const userId = searchParams.get("user_id");
+
+  useEffect(() => {
+    const { allowedUserIds } = config;
+
+    if (!userId) {
+      const firstUserId = allowedUserIds[0];
+      window.location.search = `?user_id=${firstUserId}`;
+    }
+
+    if (!allowedUserIds.includes(Number(userId))) {
+      navigate("/user_not_found");
+    }
+  }, [userId, navigate]);
 
   useEffect(() => {
     const fetchUser = async () => {

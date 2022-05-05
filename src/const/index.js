@@ -1,3 +1,3 @@
 export const config = {
-  userId: 12,
+  allowedUserIds: [12, 18],
 };

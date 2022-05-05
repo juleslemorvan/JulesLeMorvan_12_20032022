@@ -1,29 +1,35 @@
 import "./App.css";
-import { useState, useEffect, createContext } from "react";
+import { createContext } from "react";
 import { Header } from "./components/Header/Header";
 import { NavBar } from "./components/NavBar/NavBar";
 import { Home } from "./pages/Home/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotFound from "./pages/NotFound";
 
 export const UserContext = createContext(null);
 
+const UserNotFound = () => {
+  return "User Not Found";
+};
+
 function App() {
-  const [userId, setUserId] = useState(null);
-
-  useEffect(() => {
-    const nextUserId = new URLSearchParams(window.location.search).get(
-      "user_id"
-    );
-    setUserId(nextUserId);
-  }, []);
-
   return (
-    <div className="layout">
-      <UserContext.Provider value={userId}>
-        <Header />
-        <NavBar />
-        <Home />
-      </UserContext.Provider>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="layout">
+              <Header />
+              <NavBar />
+              <Home />
+            </div>
+          }
+        />
+        <Route path="/user_not_found" element={<UserNotFound />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

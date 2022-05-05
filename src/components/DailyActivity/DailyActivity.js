@@ -12,16 +12,22 @@ import {
 import { getUserActivity } from "../../api/routes";
 import { config } from "../../const";
 import "./DailyActivity.css";
+import { useSearchParams } from "react-router-dom";
 
 export const DailyActivity = () => {
   const [userActivity, setUserActivity] = useState([]);
-  console.log(userActivity);
+  const [searchParams] = useSearchParams();
+  const userId = searchParams.get("user_id");
 
   useEffect(() => {
     const fetchUserActivity = async () => {
-      const userActivityResponse = await getUserActivity(config.userId);
+      const userActivityResponse = await getUserActivity(userId);
       const nextUserActivity = userActivityResponse.data.data.sessions.map(
-        (session, index) => ({ ...session, day: index + 1 })
+        (session, index) => ({
+          ...session,
+          day: index + 1,
+          "poids (kg)": session.kilogram,
+        })
       );
       setUserActivity(nextUserActivity);
     };
@@ -58,7 +64,7 @@ export const DailyActivity = () => {
           <Tooltip />
           <Legend verticalAlign="top" align="end" />
           <Bar
-            dataKey="kilogram"
+            dataKey="poids (kg)"
             fill="#282D30"
             legendType="circle"
             radius={[10, 10, 0, 0]}

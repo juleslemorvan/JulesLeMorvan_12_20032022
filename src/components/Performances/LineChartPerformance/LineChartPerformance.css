@@ -1,0 +1,15 @@
+.simpleLineChart {
+  position: relative;
+}
+
+.recharts-cartesian-axis-line {
+  stroke: none;
+}
+
+.recharts-cartesian-axis-tick-line {
+  display: none;
+}
+
+.recharts-line {
+  width: 250px;
+}
