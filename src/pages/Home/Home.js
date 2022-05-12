@@ -5,57 +5,65 @@ import { Performances } from "../../components/Performances/Performances";
 import { DailyActivity } from "../../components/DailyActivity/DailyActivity";
 import "./Home.css";
 import { getUser } from "../../api/routes";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { config } from "../../const";
 
 export const Home = () => {
   const [user, setUser] = useState(null);
-  const [searchParams] = useSearchParams();
+  console.log(useParams());
+
+  const { id, type } = useParams();
   const navigate = useNavigate();
-  const userId = searchParams.get("user_id");
+
+  console.log(type);
+
+  if (!["activity", "performance", "nutriment", undefined].includes(type)) {
+    navigate("/user_not_found");
+  }
 
   useEffect(() => {
     const { allowedUserIds } = config;
 
-    if (!userId) {
-      const firstUserId = allowedUserIds[0];
-      window.location.search = `?user_id=${firstUserId}`;
-    }
-
-    if (!allowedUserIds.includes(Number(userId))) {
+    if (!allowedUserIds.includes(Number(id))) {
       navigate("/user_not_found");
     }
-  }, [userId, navigate]);
+  }, [id, navigate]);
 
   useEffect(() => {
     const fetchUser = async () => {
-      const userResponse = await getUser(userId);
+      const userResponse = await getUser(id);
 
       setUser(userResponse.data.data);
     };
 
-    if (userId) {
+    if (id) {
       fetchUser();
     }
-  }, [userId]);
+  }, [id]);
 
-  if (!user) {
+  if (!id) {
     return "...";
   }
 
   return (
     <div className="homeContainer">
-      <UserInformations firstName={user.userInfos.firstName} />
+      <UserInformations firstName={user?.userInfos.firstName} />
       <div className="content">
-        <div className="dailyActivity">
-          <DailyActivity />
-        </div>
-        <div className="performances">
-          <Performances />
-        </div>
-        <div className="nutriments">
-          <Nutriments data={user.keyData} />
-        </div>
+        {type === "activity" || type === undefined ? (
+          <div className="dailyActivity">
+            <DailyActivity />
+          </div>
+        ) : null}
+        {type === "performance" || type === undefined ? (
+          <div className="performances">
+            <Performances />
+          </div>
+        ) : null}
+        {type === "nutriment" || type === undefined ? (
+          <div className="nutriments">
+            <Nutriments data={user?.keyData} />
+          </div>
+        ) : null}
       </div>
     </div>
   );

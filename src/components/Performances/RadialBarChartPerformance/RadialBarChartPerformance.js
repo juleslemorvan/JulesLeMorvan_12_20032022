@@ -8,11 +8,11 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const RadialBarChartPerformance = () => {
-  const [searchParams] = useSearchParams();
-  const userId = searchParams.get("user_id");
+  const { id } = useParams();
+  const userId = id;
 
   const [data, setData] = useState([]);
   const [score, setScore] = useState(0);

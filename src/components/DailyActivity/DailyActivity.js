@@ -10,14 +10,14 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { getUserActivity } from "../../api/routes";
-import { config } from "../../const";
+
 import "./DailyActivity.css";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export const DailyActivity = () => {
   const [userActivity, setUserActivity] = useState([]);
-  const [searchParams] = useSearchParams();
-  const userId = searchParams.get("user_id");
+  const { id } = useParams();
+  const userId = id;
 
   useEffect(() => {
     const fetchUserActivity = async () => {

@@ -8,7 +8,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getUserAverageSessions } from "../../../api/routes";
 
 const daysMap = {
@@ -26,9 +26,7 @@ const renderLegende = () => {
     <div
       style={{
         position: "absolute",
-
         left: "0%",
-
         fontSize: "15px",
         color: "#fff",
         opacity: "0.6",
@@ -40,8 +38,8 @@ const renderLegende = () => {
 };
 
 const LineChartPerformance = () => {
-  const [searchParams] = useSearchParams();
-  const userId = searchParams.get("user_id");
+  const { id } = useParams();
+  const userId = id;
 
   const [userAverageSessions, setUserAverageSessions] = useState([]);
   console.log(userAverageSessions);

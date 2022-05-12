@@ -16,7 +16,7 @@ export const Nutriments = ({ data }) => {
         </div>
         <div className="infos">
           <p className="item-count">
-            {data.calorieCount.toLocaleString("en-US")}kCal
+            {data?.calorieCount.toLocaleString("en-US")}kCal
           </p>
           <p className="item-title">Calories</p>
         </div>
@@ -27,7 +27,7 @@ export const Nutriments = ({ data }) => {
           <img src={proteine} alt="proteine-logo" />
         </div>
         <div className="infos">
-          <p className="item-count">{data.proteinCount}g</p>
+          <p className="item-count">{data?.proteinCount}g</p>
           <p className="item-title">Proteines</p>
         </div>
       </div>
@@ -37,7 +37,7 @@ export const Nutriments = ({ data }) => {
           <img src={glucide} alt="glucide-logo" className="glucide-logo" />
         </div>
         <div className="infos">
-          <p className="item-count">{data.carbohydrateCount}g</p>
+          <p className="item-count">{data?.carbohydrateCount}g</p>
           <p className="item-title">glucides</p>
         </div>
       </div>
@@ -47,7 +47,7 @@ export const Nutriments = ({ data }) => {
           <img src={lipide} alt="lipide-logo" />
         </div>
         <div className="infos">
-          <p className="item-count">{data.carbohydrateCount}g</p>
+          <p className="item-count">{data?.carbohydrateCount}g</p>
           <p className="item-title">Lipides</p>
         </div>
       </div>
