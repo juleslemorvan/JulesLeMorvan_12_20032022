@@ -64,12 +64,14 @@ const RadialBarChartPerformance = () => {
       <RadialBarChart
         cx="50%"
         cy="50%"
-        innerRadius="10%"
+        innerRadius="80%"
         outerRadius="80%"
         barSize={10}
+        startAngle={100}
+        endAngle={450}
         data={data}
       >
-        <RadialBar minAngle={15} dataKey="uv" />
+        <RadialBar minAngle={15} dataKey="uv" cornerRadius={10} />
         <Legend
           iconSize={10}
           layout="vertical"
