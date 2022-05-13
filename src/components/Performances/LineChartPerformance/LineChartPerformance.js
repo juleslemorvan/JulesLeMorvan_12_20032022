@@ -23,26 +23,18 @@ const daysMap = {
 
 const renderLegende = () => {
   return (
-    <div
-      style={{
-        position: "absolute",
-        left: "0%",
-        fontSize: "15px",
-        color: "#fff",
-        opacity: "0.6",
-      }}
-    >
-      Durée moyenne des sessions
+    <div style={{ color: "white", margin: 20, marginBottom: 50, opacity: 0.7 }}>
+      <p>Durée moyenne des sessions</p>
     </div>
   );
 };
+let div = document.querySelector(".average-sessions");
 
 const LineChartPerformance = () => {
   const { id } = useParams();
   const userId = id;
 
   const [userAverageSessions, setUserAverageSessions] = useState([]);
-  console.log(userAverageSessions);
 
   useEffect(() => {
     const fetchUserAverageSessions = async () => {
@@ -59,19 +51,74 @@ const LineChartPerformance = () => {
     fetchUserAverageSessions();
   }, []);
 
+  const TooltipStyle = ({ payload }) => {
+    if (payload && payload.length) {
+      return (
+        <div
+          className="tooltip"
+          style={{
+            background: "white",
+            padding: "10px 5px",
+            color: "black",
+            fontWeight: "bold",
+          }}
+        >
+          <p>{payload[0].value} min</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer
+      width="100%"
+      height="100%"
+      className="average-sessions"
+    >
       <LineChart
-        width="100%"
-        height="100%"
+        onMouseMove={(e) => {
+          if (e.isTooltipActive === true) {
+            let windowWidth = div.clientWidth;
+            let percentage = Math.round(
+              (e.activeCoordinate.x / windowWidth) * 100
+            );
+
+            div.style.background = `linear-gradient(90deg, rgba(255,0,0,1) ${percentage}%, rgba(175,0,0,1.5) ${percentage}%, rgba(175,0,0,1.5) 100%)`;
+          } else {
+            div.style.background = `#FF0100`;
+          }
+        }}
+        width={500}
+        height={300}
         data={userAverageSessions}
         className="simpleLineChart"
+        margin={{
+          top: 0,
+          right: 10,
+          left: 10,
+          bottom: 10,
+        }}
       >
-        <XAxis dataKey="name" />
+        <XAxis
+          dataKey="name"
+          tick={{ fill: "white", opacity: "0.7" }}
+          axisLine={false}
+          tickLine={false}
+        />
 
-        <Tooltip />
-        <Legend content={renderLegende} />
-        <Line type="monotone" dataKey="value" stroke="#82ca9d" />
+        <Tooltip content={<TooltipStyle payload={[userAverageSessions]} />} />
+        <Legend content={renderLegende} verticalAlign="top" />
+        <Line
+          type="natural"
+          dataKey="value"
+          stroke="#82ca9d"
+          strokeWidth={2}
+          dot={false}
+          activeDot={{
+            stroke: "#fff",
+          }}
+        />
       </LineChart>
     </ResponsiveContainer>
   );

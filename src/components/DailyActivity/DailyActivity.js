@@ -35,6 +35,27 @@ export const DailyActivity = () => {
     fetchUserActivity();
   }, []);
 
+  const TooltipStyle = ({ payload }) => {
+    if (payload && payload.length) {
+      return (
+        <div
+          className="tooltip"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            background: "#E60000",
+            padding: "15px 5px",
+            color: "white",
+          }}
+        >
+          <p>{payload[0].value}kg</p>
+          <p>{payload[1].value}Kcal</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <>
       <div
@@ -61,7 +82,7 @@ export const DailyActivity = () => {
           <CartesianGrid strokeDasharray="1 1" vertical={false} />
           <XAxis dataKey="day" />
           <YAxis />
-          <Tooltip />
+          <Tooltip content={<TooltipStyle payload={[userActivity]} />} />
           <Legend verticalAlign="top" align="end" />
           <Bar
             dataKey="poids (kg)"

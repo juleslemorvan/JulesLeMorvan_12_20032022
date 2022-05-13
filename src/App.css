@@ -9,3 +9,7 @@
     "header header"
     "navbar home";
 }
+
+body * {
+  box-sizing: border-box;
+}

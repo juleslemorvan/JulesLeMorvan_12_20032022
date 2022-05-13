@@ -28,7 +28,7 @@ const RadialBarChartPerformance = () => {
         },
         {
           uv: userScore,
-          fill: "#8884d8",
+          fill: "#FF0000",
         },
       ];
       setData(userScoreData);
