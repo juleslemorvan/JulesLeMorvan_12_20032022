@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./RadialBarChartPerformance.css";
-import { config } from "../../../const";
 import { getUser } from "../../../api/routes";
 import {
   RadialBarChart,
@@ -20,6 +19,11 @@ const RadialBarChartPerformance = () => {
   useEffect(() => {
     const fetchUserScore = async () => {
       const userScoreResponse = await getUser(userId);
+
+      if (!userScoreResponse.data.data.todayScore) {
+        userScoreResponse.data.data.todayScore =
+          userScoreResponse.data.data.score;
+      }
       const userScore = userScoreResponse.data.data.todayScore * 100;
       const userScoreData = [
         {

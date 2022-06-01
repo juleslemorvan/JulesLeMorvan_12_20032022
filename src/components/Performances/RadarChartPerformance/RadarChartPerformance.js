@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./RadarChartPerformance.css";
-import { config } from "../../../const";
 import { getUserPerformance } from "../../../api/routes";
 import {
   Radar,

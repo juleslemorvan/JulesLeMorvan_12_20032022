@@ -7,6 +7,12 @@
   align-items: stretch;
 }
 
+@media screen and (max-width: 1025px) {
+  .nutriments-container {
+    flex-direction: row;
+  }
+}
+
 .nutriment-item {
   background: #fbfbfb;
   border-radius: 5px;

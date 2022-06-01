@@ -8,19 +8,23 @@ import velo from "../../assets/svg/navbar2/velo.svg";
 export const NavBar = () => {
   return (
     <div className="navbarContainer">
-      <div className="navbar-item ">
-        <img src={bonhomme} alt="logo bonhomme" />
+      <div className="navbar-item-container">
+        <div className="navbar-item ">
+          <img src={bonhomme} alt="logo bonhomme" />
+        </div>
+        <div className="navbar-item">
+          <img src={nageur} alt="logo nageur" />
+        </div>
+        <div className="navbar-item">
+          <img src={velo} alt="logo velo" />
+        </div>
+        <div className="navbar-item">
+          <img src={arrow} alt="logo arrow" />
+        </div>
       </div>
-      <div className="navbar-item">
-        <img src={nageur} alt="logo nageur" />
+      <div className="corporight-container">
+        <p className="corporight">Copiryght, SportSee 2020</p>
       </div>
-      <div className="navbar-item">
-        <img src={velo} alt="logo velo" />
-      </div>
-      <div className="navbar-item">
-        <img src={arrow} alt="logo arrow" />
-      </div>
-      <p className="corporight">Copiryght, SportSee 2020</p>
     </div>
   );
 };

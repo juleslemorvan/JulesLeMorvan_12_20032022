@@ -79,26 +79,19 @@ const LineChartPerformance = () => {
       <LineChart
         onMouseMove={(e) => {
           if (e.isTooltipActive === true) {
+            let div = document.querySelector(".average-sessions");
             let windowWidth = div.clientWidth;
             let percentage = Math.round(
               (e.activeCoordinate.x / windowWidth) * 100
             );
 
             div.style.background = `linear-gradient(90deg, rgba(255,0,0,1) ${percentage}%, rgba(175,0,0,1.5) ${percentage}%, rgba(175,0,0,1.5) 100%)`;
-          } else {
-            div.style.background = `#FF0100`;
           }
         }}
         width={500}
         height={300}
         data={userAverageSessions}
         className="simpleLineChart"
-        margin={{
-          top: 0,
-          right: 10,
-          left: 10,
-          bottom: 10,
-        }}
       >
         <XAxis
           dataKey="name"

@@ -9,6 +9,12 @@
   align-items: center;
 }
 
+.navbar-item-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .navbar-item {
   height: 64px;
   width: 64px;
